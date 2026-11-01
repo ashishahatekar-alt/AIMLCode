@@ -4,6 +4,7 @@ using OllamaSharp;
 using ModelContextProtocol;
 using OpenAI.Chat;
 using MachinelearningClass;
+using System.ClientModel.Primitives;
 
 namespace MCPClient
 {
@@ -11,15 +12,23 @@ namespace MCPClient
     {
         static async Task Main(string[] args)
         {
-            var transport = new StdioClientTransport(new StdioClientTransportOptions
+            //var transport = new StdioClientTransport(new StdioClientTransportOptions
+            //{
+            //    Name = "Greetingtools",
+            //    Command = "dotnet",
+            //    Arguments =
+            //    [
+            //        @"D:\Code\Practice\AI_ML_Cohort_Updated\MCPServerDotNet\bin\Debug\net8.0\MCPServerStdIO.dll"
+            //    ]
+            //});
+
+            var transport = new HttpClientTransport(new HttpClientTransportOptions
             {
                 Name = "Greetingtools",
-                Command = "dotnet",
-                Arguments =
-                [
-                    @"C:\Users\shivB\source\repos\MachinelearningClass\MCPServerDotNet\bin\Debug\net8.0\MCPServerDotNet.dll"
-                ]
+                Endpoint = new Uri("https://zfg563g6-7073.inc1.devtunnels.ms/mcp")
             });
+
+
             // here to 
             await using var mcpClient = await McpClient.CreateAsync(transport);
             var mcpTools = await mcpClient.ListToolsAsync();

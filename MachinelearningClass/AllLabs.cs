@@ -1426,10 +1426,10 @@ ORDER BY Id;";
         public string Answer { get; set; }
         public float[] Embedding { get; set; }
     }
-    public class InputText { 
+    public class InputText1 { 
         public string Text { get; set; } 
     }
-    public class Output {
+    public class Output1 {
         public string Text { get; set; }
         public float[] BagOfWords { get; set; } 
     }
